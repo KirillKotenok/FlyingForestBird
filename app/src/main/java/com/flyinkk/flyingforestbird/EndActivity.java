@@ -37,6 +37,7 @@ public class EndActivity extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         if (v.getId() == restart_btn.getId()) {
             startActivity(new Intent(this, MainActivity.class));
+            finish();
         } else if (v.getId() == exit_btn.getId()) {
             System.exit(0);
         }

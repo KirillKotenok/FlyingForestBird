@@ -47,5 +47,15 @@ public class MainActivity extends AppCompatActivity {
     public void callNewActivity(int score) {
         intent.putExtra(SCORE_KEY, score);
         startActivity(intent);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (MainView.IS_RUNNING) {
+
+        } else {
+            super.onBackPressed();
+        }
     }
 }

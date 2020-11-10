@@ -1,20 +1,19 @@
 package com.flyinkk.flyingforestbird;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 public class MainView extends View {
+
+    public static boolean IS_RUNNING = false;
+
     //Canvas
     private int canvasWidth;
     private int canvasHeight;
@@ -68,6 +67,7 @@ public class MainView extends View {
         super(context);
         this.screenX = screenX;
         this.screenY = screenY;
+        IS_RUNNING = true;
         initElement();
         mainActivity = (MainActivity) context;
     }
@@ -128,9 +128,10 @@ public class MainView extends View {
         blackX -= blackBallSpeed;
         if (hit(blackX, blackY)) {
             blackX -= 100;
-            life_count-=1;
+            life_count -= 1;
             if (life_count == 0) {
                 mainActivity.callNewActivity(score);
+                /*IS_RUNNING = false;*/
             }
         } else if (blackX < 0) {
             blackX = canvasWidth + 200;
@@ -188,4 +189,5 @@ public class MainView extends View {
         }
         return true;
     }
+
 }
