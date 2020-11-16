@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
     public void callNewActivity(int score) {
         intent.putExtra(SCORE_KEY, score);
         startActivity(intent);
-
     }
 
     @Override

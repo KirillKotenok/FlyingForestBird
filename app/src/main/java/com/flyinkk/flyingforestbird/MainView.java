@@ -89,7 +89,7 @@ public class MainView extends View {
         } else if (birdY > maxBirdY) {
             birdY = maxBirdY;
         }
-        birdSpeed += 2;
+        birdSpeed += 4;
         if (touch_flag) {
             canvas.drawBitmap(bird[1], birdX, birdY, null);
             touch_flag = false;
@@ -127,11 +127,10 @@ public class MainView extends View {
         //Black balls
         blackX -= blackBallSpeed;
         if (hit(blackX, blackY)) {
-            blackX -= 100;
-            life_count -= 1;
+            blackX -= 10000;
+            life_count --;
             if (life_count == 0) {
                 mainActivity.callNewActivity(score);
-                /*IS_RUNNING = false;*/
             }
         } else if (blackX < 0) {
             blackX = canvasWidth + 200;
@@ -146,7 +145,7 @@ public class MainView extends View {
         blueX -= blueBallSpeed;
         if (hit(blueX, blueY)) {
             score += 10;
-            blueX = -100;
+            blueX = -10000;
         }
         if (blueX < 0) {
             blueX = canvasWidth + 20;
