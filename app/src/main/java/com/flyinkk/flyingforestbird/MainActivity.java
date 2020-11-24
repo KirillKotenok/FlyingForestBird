@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.ImageButton;
 
 import java.sql.Time;
 import java.util.Timer;
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private MainView mainView;
     private Point point;
     private Handler handler;
+    private ImageButton start_btn;
+    private ImageButton exit_btn;
     public static final String SCORE_KEY = "SCORE";
     private final static long INTERVAL = 30;
     private Intent intent;
@@ -26,10 +29,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         handler = new Handler();
         point = new Point();
+        setContentView(R.layout.activity_main);
+        start_btn = findViewById(R.id.start_btn);
+        start_btn.setOnClickListener(v -> {
+            setContentView(mainView);
+        });
+        exit_btn = findViewById(R.id.exit_btn);
+        exit_btn.setOnClickListener(v -> {
+            finish();
+        });
         intent = new Intent(this, EndActivity.class);
         getWindowManager().getDefaultDisplay().getSize(point);
         mainView = new MainView(this, point.x, point.y);
-        setContentView(mainView);
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -52,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (MainView.IS_RUNNING) {
-
+            finish();
+            System.exit(0);
         } else {
             super.onBackPressed();
         }
